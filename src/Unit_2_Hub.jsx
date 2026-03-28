@@ -999,43 +999,49 @@ const FuncComp = () => {
         <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto px-2">Function composition means chaining machines together. The output of <strong>f(x)</strong> immediately becomes the input for <strong>g(y)</strong>. Click a starting number below to trace the data flow.</p>
       </header>
 
-      <div className="bg-slate-800 p-8 rounded-3xl border-2 border-slate-700 shadow-xl overflow-x-auto">
-        <div className="min-w-[600px] flex justify-between items-center relative py-12">
-          <div className="flex flex-col items-center gap-6 z-10 w-1/4">
-            <div className="text-sm font-bold text-cyan-400 uppercase tracking-widest mb-2 bg-slate-900 px-4 py-1 rounded-full">Set X</div>
-            {X.map(x => (
-              <button key={`x-${x}`} onClick={() => setSelectedX(x)} className={`w-16 h-16 rounded-xl text-3xl font-black transition-all transform active:scale-95 border-4 ${selectedX === x ? 'bg-cyan-500 border-white text-white shadow-[0_0_20px_rgba(34,211,238,0.8)] scale-110' : 'bg-slate-900 border-cyan-500/30 text-cyan-300 hover:border-cyan-400'}`}>
-                {x}
-              </button>
-            ))}
+      <div className="bg-slate-800 p-6 md:p-8 rounded-3xl border-2 border-slate-700 shadow-xl overflow-x-auto">
+        <div className="min-w-[640px] space-y-6">
+          <div className="grid grid-cols-3 gap-6 md:gap-8 text-center">
+            <div className="text-sm font-bold text-cyan-400 uppercase tracking-widest bg-slate-900 px-4 py-1 rounded-full justify-self-center">Set X</div>
+            <div className="text-sm font-bold text-fuchsia-400 uppercase tracking-widest bg-slate-900 px-4 py-1 rounded-full justify-self-center">Set Y</div>
+            <div className="text-sm font-bold text-amber-400 uppercase tracking-widest bg-slate-900 px-4 py-1 rounded-full justify-self-center">Set Z</div>
           </div>
-          <div className="absolute left-[12%] right-[50%] h-full pointer-events-none flex flex-col justify-center gap-14 opacity-30 px-8">
-             {X.map(x => <div key={`line-f-${x}`} className={`h-1 w-full transition-all duration-500 ${selectedX === x ? 'bg-cyan-400 shadow-[0_0_10px_cyan]' : 'bg-slate-600'}`}></div>)}
-          </div>
-          <div className="flex flex-col items-center gap-6 z-10 w-1/4">
-            <div className="text-sm font-bold text-fuchsia-400 uppercase tracking-widest mb-2 bg-slate-900 px-4 py-1 rounded-full">Set Y</div>
-            {Y.map(y => (
-                <div key={`y-${y}`} className={`w-16 h-16 rounded-xl text-4xl flex items-center justify-center transition-all duration-500 border-4 ${selectedX && f[selectedX] === y ? 'bg-fuchsia-500 border-white shadow-[0_0_20px_rgba(217,70,239,0.8)] scale-110' : 'bg-slate-900 border-fuchsia-500/30 text-fuchsia-300'}`}>
-                  {y}
-                </div>
-            ))}
-          </div>
-          <div className="absolute left-[50%] right-[12%] h-full pointer-events-none flex flex-col justify-center gap-14 opacity-30 px-8">
-             {Y.map(y => {
-               const xForThisY = parseInt(Object.keys(f).find(key => f[key] === y));
-               return <div key={`line-g-${y}`} className={`h-1 w-full transition-all duration-500 ${selectedX === xForThisY ? 'bg-fuchsia-400 shadow-[0_0_10px_fuchsia] delay-150' : 'bg-slate-600'}`}></div>
-             })}
-          </div>
-          <div className="flex flex-col items-center gap-6 z-10 w-1/4">
-            <div className="text-sm font-bold text-amber-400 uppercase tracking-widest mb-2 bg-slate-900 px-4 py-1 rounded-full">Set Z</div>
-            {Z.map(z => {
-              const yForThisZ = Object.keys(g).find(key => g[key] === z);
-              const xForThisY = parseInt(Object.keys(f).find(key => f[key] === yForThisZ));
+
+          <div className="space-y-6">
+            {X.map((x, index) => {
+              const y = Y[index];
+              const z = g[y];
+              const isActive = selectedX === x;
+
               return (
-                <div key={`z-${z}`} className={`w-16 h-16 rounded-xl text-3xl flex items-center justify-center transition-all duration-500 border-4 ${selectedX === xForThisY ? 'bg-amber-500 border-white shadow-[0_0_20px_rgba(245,158,11,0.8)] scale-110 delay-300' : 'bg-slate-900 border-amber-500/30 text-amber-300'}`}>
-                  {z}
+                <div key={`row-${x}`} className="grid grid-cols-[auto_1fr_auto_1fr_auto] items-center gap-4">
+                  <div className="flex justify-center">
+                    <button
+                      key={`x-${x}`}
+                      onClick={() => setSelectedX(x)}
+                      className={`w-16 h-16 rounded-xl text-3xl font-black transition-all transform active:scale-95 border-4 ${isActive ? 'bg-cyan-500 border-white text-white shadow-[0_0_20px_rgba(34,211,238,0.8)] scale-110' : 'bg-slate-900 border-cyan-500/30 text-cyan-300 hover:border-cyan-400'}`}
+                    >
+                      {x}
+                    </button>
+                  </div>
+
+                  <div className={`h-1 rounded-full transition-all duration-500 ${isActive ? 'bg-cyan-400 shadow-[0_0_10px_cyan]' : 'bg-slate-600/60'}`}></div>
+
+                  <div className="flex justify-center">
+                    <div className={`w-16 h-16 rounded-xl text-4xl flex items-center justify-center transition-all duration-500 border-4 ${isActive ? 'bg-fuchsia-500 border-white shadow-[0_0_20px_rgba(217,70,239,0.8)] scale-110' : 'bg-slate-900 border-fuchsia-500/30 text-fuchsia-300'}`}>
+                      {y}
+                    </div>
+                  </div>
+
+                  <div className={`h-1 rounded-full transition-all duration-500 ${isActive ? 'bg-fuchsia-400 shadow-[0_0_10px_fuchsia] delay-150' : 'bg-slate-600/60'}`}></div>
+
+                  <div className="flex justify-center">
+                    <div className={`w-16 h-16 rounded-xl text-3xl flex items-center justify-center transition-all duration-500 border-4 ${isActive ? 'bg-amber-500 border-white shadow-[0_0_20px_rgba(245,158,11,0.8)] scale-110 delay-300' : 'bg-slate-900 border-amber-500/30 text-amber-300'}`}>
+                      {z}
+                    </div>
+                  </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
