@@ -248,7 +248,7 @@ const SetsPowerSet = () => {
   const setTypeExamples = [
     {
       title: 'Empty Set',
-      notation: 'A = Ø',
+      notation: 'A = ï¿½',
       example: '{ }',
       detail: 'No fruits are selected, so the set has zero elements.',
       accent: 'border-slate-500/50 text-slate-300'
