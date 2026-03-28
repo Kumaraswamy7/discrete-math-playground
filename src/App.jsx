@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Unit1MasterHub from './Unit_1_Hub.jsx';
 import Unit2MasterHub from './Unit_2_Hub.jsx';
 
 export default function DiscreteMathHome() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeScreen, setActiveScreen] = useState('home');
+  const curriculumHubRef = useRef(null);
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -168,6 +169,13 @@ export default function DiscreteMathHome() {
     }
   };
 
+  const handleViewSyllabus = () => {
+    curriculumHubRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
+
   if (activeScreen === 'unit1') {
     return (
       <div className="min-h-screen bg-slate-950">
@@ -252,12 +260,9 @@ export default function DiscreteMathHome() {
 
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up delay-300">
             <button
-              onClick={() => setActiveScreen('unit2')}
-              className="px-8 py-4 rounded-full bg-white text-slate-950 font-black text-lg hover:bg-slate-200 transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+              onClick={handleViewSyllabus}
+              className="px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg border border-slate-700 hover:bg-slate-800 transition-all hover:shadow-lg"
             >
-              Resume Unit 2
-            </button>
-            <button className="px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg border border-slate-700 hover:bg-slate-800 transition-all hover:shadow-lg">
               View Syllabus
             </button>
           </div>
@@ -322,7 +327,7 @@ export default function DiscreteMathHome() {
         {/* </div> */}
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
-          <div className="flex items-center gap-4 mb-12">
+          <div ref={curriculumHubRef} className="flex items-center gap-4 mb-12">
             <h2 className="text-3xl font-black text-white uppercase tracking-widest">
               Curriculum Hub
             </h2>
