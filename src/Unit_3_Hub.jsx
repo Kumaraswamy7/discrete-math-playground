@@ -1244,29 +1244,29 @@ export default function Unit3MasterHub() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col">
-      <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-2xl flex flex-col backdrop-blur-md bg-opacity-90">
-        <div className="px-3 md:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-800/50">
+      <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-xl flex flex-col">
+        <div className="px-2 md:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-3 border-b border-slate-800/50">
             <div className="text-center md:text-left shrink-0">
-              <div className="text-[10px] md:text-xs font-black tracking-widest text-amber-500 uppercase mb-1 flex items-center justify-center md:justify-start gap-2">
+              <div className="text-[10px] md:text-xs font-bold tracking-widest text-amber-500 uppercase mb-1 flex items-center justify-center md:justify-start gap-2">
                 <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> Unit 3 • Full Masterclass
               </div>
-              <h1 className="text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 tracking-tight">THE ALGEBRA ENGINE</h1>
+              <h1 className="text-lg md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 tracking-tight">THE ALGEBRA ENGINE</h1>
             </div>
             <div className="w-full md:w-auto overflow-x-auto scrollbar-hide py-1">
               <nav className="flex flex-nowrap gap-2 justify-start md:justify-end w-max mx-auto md:mx-0 px-2">
                   {PHASES.map(phase => (
-                      <button key={phase.id} onClick={() => setActivePhase(phase.id)} className={`whitespace-nowrap px-5 py-2.5 rounded-xl font-black text-xs md:text-sm transition-all flex items-center gap-2 shrink-0 ${activePhase === phase.id ? 'bg-amber-500 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.5)] transform scale-105' : 'bg-slate-800/50 text-slate-400 hover:text-white hover:bg-slate-700 border border-slate-700/50'}`}>
+                      <button key={phase.id} onClick={() => setActivePhase(phase.id)} className={`whitespace-nowrap px-4 py-2 rounded-xl font-black text-xs md:text-sm transition-all flex items-center gap-2 shrink-0 ${activePhase === phase.id ? 'bg-amber-500 text-slate-900 shadow-[0_0_15px_rgba(245,158,11,0.4)] transform scale-105' : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 border border-slate-700'}`}>
                           <span className="text-lg">{phase.icon}</span> <span>{phase.title}</span>
                       </button>
                   ))}
               </nav>
             </div>
         </div>
-        <div className="bg-slate-950/30 py-2.5">
+        <div className="bg-slate-900/50 py-2">
             <div className="w-full overflow-x-auto scrollbar-hide py-1">
-              <nav className="flex flex-nowrap gap-3 justify-start md:justify-center w-max mx-auto px-4">
+              <nav className="flex flex-nowrap gap-2 justify-start md:justify-center w-max mx-auto px-2">
                   {SUB_TABS[activePhase].map(tab => (
-                      <button key={tab.id} onClick={() => handleSubTabChange(tab.id)} className={`whitespace-nowrap px-4 py-2 rounded-lg font-bold text-xs md:text-sm transition-all flex items-center gap-2 shrink-0 ${activeSubTab === tab.id ? 'bg-slate-700 text-white shadow-md border border-slate-500' : 'text-slate-500 hover:text-slate-300 border border-transparent hover:bg-slate-800/50'}`}>
+                      <button key={tab.id} onClick={() => handleSubTabChange(tab.id)} className={`whitespace-nowrap px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm transition-all flex items-center gap-2 shrink-0 ${activeSubTab === tab.id ? 'bg-slate-700 text-white shadow-md border border-slate-500' : 'text-slate-500 hover:text-slate-300 border border-transparent'}`}>
                           <span>{tab.icon}</span> <span>{tab.title}</span>
                       </button>
                   ))}

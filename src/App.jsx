@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Unit1MasterHub from './Unit_1_Hub.jsx';
 import Unit2MasterHub from './Unit_2_Hub.jsx';
 import Unit3MasterHub from './Unit_3_Hub.jsx';
+import Unit4MasterHub from './Unit_4_Hub.jsx';
 
 export default function DiscreteMathHome() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -71,35 +72,35 @@ export default function DiscreteMathHome() {
     },
     {
       id: 4,
+      status: 'unlocked',
+      title: 'Trees & Combinatorics',
+      subtitle: 'The Optimization Core',
+      description:
+        'Learn to count the impossible. Build binary search trees and master the art of algorithmic optimization.',
+      icon: 'ALG',
+      color: 'emerald',
+      topics: [
+        'Permutations & Combinations',
+        'Advanced Repetitions',
+        'Binomials & PIE (Pascals/Sets)',
+        'The "Choose" Engine',
+      ],
+      actionText: 'Enter Counting Hub',
+    },
+    {
+      id: 5,
       status: 'locked',
       title: 'Graph Theory',
       subtitle: 'The Network Simulator',
       description:
         'Visualize the internet. Map shortest paths, color vertices, and untangle the mathematics of complex routing.',
-      icon: 'ALG',
-      color: 'emerald',
+      icon: 'U1',
+      color: 'rose',
       topics: [
         'Vertices, Edges & Degrees',
         'Euler & Hamilton Paths',
         'Graph Isomorphism',
         'Planar Graphs & Coloring',
-      ],
-      actionText: 'Initializing...',
-    },
-    {
-      id: 5,
-      status: 'locked',
-      title: 'Trees & Combinatorics',
-      subtitle: 'The Optimization Core',
-      description:
-        'Learn to count the impossible. Build binary search trees and master the art of algorithmic optimization.',
-      icon: 'U1',
-      color: 'rose',
-      topics: [
-        'Spanning Trees & Algorithms',
-        'Pigeonhole Principle',
-        'Permutations & Combinations',
-        'Recurrence Relations',
       ],
       actionText: 'Initializing...',
     },
@@ -172,6 +173,10 @@ export default function DiscreteMathHome() {
     if (unitId === 3) {
       setActiveScreen('unit3');
     }
+
+    if (unitId === 4) {
+      setActiveScreen('unit4');
+    }
   };
 
   const handleViewSyllabus = () => {
@@ -240,6 +245,27 @@ export default function DiscreteMathHome() {
           </div>
         </div>
         <Unit3MasterHub />
+      </div>
+    );
+  }
+
+  if (activeScreen === 'unit4') {
+    return (
+      <div className="min-h-screen bg-slate-950">
+        <div className="sticky top-0 z-[60] border-b border-slate-800 bg-slate-950/95 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+            <button
+              onClick={() => setActiveScreen('home')}
+              className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-sm font-bold tracking-wide text-slate-200 transition hover:bg-slate-800"
+            >
+              Back to Home
+            </button>
+            <span className="text-sm font-bold uppercase tracking-[0.25em] text-emerald-400">
+              Unit 4
+            </span>
+          </div>
+        </div>
+        <Unit4MasterHub />
       </div>
     );
   }

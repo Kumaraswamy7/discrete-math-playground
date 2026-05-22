@@ -1131,23 +1131,27 @@ export default function Unit1MasterHub() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col">
-      <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <h1 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tracking-tight">
-                UNIT 1 MASTER HUB
-            </h1>
-            <nav className="flex overflow-x-auto w-full md:w-auto gap-2 pb-2 md:pb-0 scrollbar-hide">
-                {tabs.map(tab => (
-                    <button 
-                        key={tab.id} 
-                        onClick={() => setActiveTab(tab.id)}
-                        className={`whitespace-nowrap px-4 py-2 rounded-lg font-bold text-sm transition-all flex items-center gap-2
-                        ${activeTab === tab.id ? 'bg-slate-700 text-white shadow-md' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'}`}
-                    >
-                        <span>{tab.icon}</span> <span className="hidden sm:inline">{tab.label}</span>
-                    </button>
-                ))}
-            </nav>
+      <header className="bg-slate-900 border-b border-slate-800 sticky top-[60px] z-50 shadow-xl flex flex-col">
+        <div className="px-2 md:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-3 border-b border-slate-800/50">
+            <div className="text-center md:text-left shrink-0">
+              <div className="text-[10px] md:text-xs font-bold tracking-widest text-cyan-500 uppercase mb-1 flex items-center justify-center md:justify-start gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span> Unit 1 • Full Masterclass
+              </div>
+              <h1 className="text-lg md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 tracking-tight">THE LOGIC ENGINE</h1>
+            </div>
+            <div className="w-full md:w-auto overflow-x-auto scrollbar-hide py-1">
+              <nav className="flex flex-nowrap gap-2 justify-start md:justify-end w-max mx-auto md:mx-0 px-2">
+                  {tabs.map(tab => (
+                      <button 
+                          key={tab.id} 
+                          onClick={() => setActiveTab(tab.id)} 
+                          className={`whitespace-nowrap px-4 py-2 rounded-xl font-black text-xs md:text-sm transition-all flex items-center gap-2 shrink-0 ${activeTab === tab.id ? 'bg-cyan-500 text-slate-900 shadow-[0_0_15px_rgba(6,182,212,0.4)] transform scale-105' : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 border border-slate-700'}`}
+                      >
+                          <span className="text-lg">{tab.icon}</span> <span>{tab.label}</span>
+                      </button>
+                  ))}
+              </nav>
+            </div>
         </div>
       </header>
 
