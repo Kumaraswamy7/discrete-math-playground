@@ -9,6 +9,11 @@ export default function DiscreteMathHome() {
   const [activeScreen, setActiveScreen] = useState('home');
   const curriculumHubRef = useRef(null);
 
+  // Scroll to top whenever the screen changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeScreen]);
+
   useEffect(() => {
     const handleMouseMove = (event) => {
       setMousePos({ x: event.clientX, y: event.clientY });
