@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Unit1MasterHub from './Unit_1_Hub.jsx';
 import Unit2MasterHub from './Unit_2_Hub.jsx';
+import Unit3MasterHub from './Unit_3_Hub.jsx';
 
 export default function DiscreteMathHome() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -53,20 +54,20 @@ export default function DiscreteMathHome() {
     },
     {
       id: 3,
-      status: 'locked',
+      status: 'unlocked',
       title: 'Algebraic Structures',
       subtitle: 'The Cryptography Engine',
       description:
-        'Abstract algebra is the secret behind modern encryption. Prepare to explore Groups, Rings, and modular arithmetic.',
+        'Build the algebra behind computation: operation laws, semigroups, monoids, lattices, Hasse diagrams, and Boolean logic.',
       icon: 'ALG',
       color: 'amber',
       topics: [
-        'Semi-groups & Monoids',
-        "Abelian Groups",
-        "Cosets & Lagrange's Theorem",
-        'Rings & Fields',
+        'Algebraic Systems & Binary Operations',
+        'Semigroups and Monoids',
+        'Lattices + Hasse Diagrams',
+        'Boolean Algebra + Logic Gate Simplification',
       ],
-      actionText: 'Initializing...',
+      actionText: 'Enter Algebra Hub',
     },
     {
       id: 4,
@@ -167,6 +168,10 @@ export default function DiscreteMathHome() {
     if (unitId === 2) {
       setActiveScreen('unit2');
     }
+
+    if (unitId === 3) {
+      setActiveScreen('unit3');
+    }
   };
 
   const handleViewSyllabus = () => {
@@ -214,6 +219,27 @@ export default function DiscreteMathHome() {
           </div>
         </div>
         <Unit2MasterHub />
+      </div>
+    );
+  }
+
+  if (activeScreen === 'unit3') {
+    return (
+      <div className="min-h-screen bg-slate-950">
+        <div className="sticky top-0 z-[60] border-b border-slate-800 bg-slate-950/95 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+            <button
+              onClick={() => setActiveScreen('home')}
+              className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-sm font-bold tracking-wide text-slate-200 transition hover:bg-slate-800"
+            >
+              Back to Home
+            </button>
+            <span className="text-sm font-bold uppercase tracking-[0.25em] text-amber-400">
+              Unit 3
+            </span>
+          </div>
+        </div>
+        <Unit3MasterHub />
       </div>
     );
   }
