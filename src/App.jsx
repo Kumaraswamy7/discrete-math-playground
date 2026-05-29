@@ -3,6 +3,7 @@ import Unit1MasterHub from './Unit_1_Hub.jsx';
 import Unit2MasterHub from './Unit_2_Hub.jsx';
 import Unit3MasterHub from './Unit_3_Hub.jsx';
 import Unit4MasterHub from './Unit_4_Hub.jsx';
+import Unit5MasterHub from './Unit_5_Hub.jsx';
 
 export default function DiscreteMathHome() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -94,7 +95,7 @@ export default function DiscreteMathHome() {
     },
     {
       id: 5,
-      status: 'locked',
+      status: 'unlocked',
       title: 'Graph Theory',
       subtitle: 'The Network Simulator',
       description:
@@ -107,7 +108,7 @@ export default function DiscreteMathHome() {
         'Graph Isomorphism',
         'Planar Graphs & Coloring',
       ],
-      actionText: 'Initializing...',
+      actionText: 'Enter Graph Hub',
     },
   ];
 
@@ -181,6 +182,10 @@ export default function DiscreteMathHome() {
 
     if (unitId === 4) {
       setActiveScreen('unit4');
+    }
+
+    if (unitId === 5) {
+      setActiveScreen('unit5');
     }
   };
 
@@ -271,6 +276,27 @@ export default function DiscreteMathHome() {
           </div>
         </div>
         <Unit4MasterHub />
+      </div>
+    );
+  }
+
+  if (activeScreen === 'unit5') {
+    return (
+      <div className="min-h-screen bg-slate-950">
+        <div className="sticky top-0 z-[60] border-b border-slate-800 bg-slate-950/95 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+            <button
+              onClick={() => setActiveScreen('home')}
+              className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-sm font-bold tracking-wide text-slate-200 transition hover:bg-slate-800"
+            >
+              Back to Home
+            </button>
+            <span className="text-sm font-bold uppercase tracking-[0.25em] text-rose-400">
+              Unit 5
+            </span>
+          </div>
+        </div>
+        <Unit5MasterHub />
       </div>
     );
   }
